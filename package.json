@@ -6,6 +6,7 @@
   "scripts": {
     "preinstall": "node -e \"console.log('Installing GTO Connect dependencies...')\"",
     "build": "pnpm run typecheck && pnpm -r --if-present run build",
+    "start": "pnpm --dir artifacts/auth-app run build && pnpm --dir artifacts/auth-app run start",
     "typecheck:libs": "tsc --build",
     "typecheck": "pnpm run typecheck:libs && pnpm -r --filter \"./artifacts/**\" --filter \"./scripts\" --if-present run typecheck"
   },

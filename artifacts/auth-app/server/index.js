@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import dns from 'node:dns';
+import { fileURLToPath } from 'node:url';
 import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
@@ -37,8 +38,11 @@ const dnsServers = (process.env.DNS_SERVERS || '')
 if (dnsServers.length) dns.setServers(dnsServers);
 
 const app = express();
+const appRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const frontendDirectory = path.join(appRoot, 'dist', 'public');
 const port = Number(process.env.PORT || 5000);
-const jwtSecret = process.env.JWT_SECRET;
+const jwtSecret = process.env.JWT_SECRET
+  ?? (process.env.NODE_ENV === 'production' ? undefined : 'gto-connect-local-development-secret');
 if (!jwtSecret) throw new Error('JWT_SECRET must be configured before starting the API.');
 let databaseError = null;
 const demoUser = { id: 'demo-user', name: 'Ananya Sharma', email: 'demo@gtoconnect.com', mobile: '9876543210' };
@@ -265,6 +269,14 @@ app.post(['/api/chat', '/api/ai/chat'], async (req, res, next) => {
     res.json({ reply: aiData.choices?.[0]?.message?.content || 'I could not prepare a response. Please try again.', source: 'ai' });
   } catch (error) { next(error); }
 });
+
+if (fs.existsSync(frontendDirectory)) {
+  app.use(express.static(frontendDirectory));
+  app.get(/^\/(?!api(?:\/|$)).*/, (_req, res) => {
+    res.sendFile(path.join(frontendDirectory, 'index.html'));
+  });
+}
+
 app.use((error, _req, res, _next) => { console.error(error); res.status(500).json({ message: 'Server error' }); });
 app.listen(port, () => console.log('GlobeTrek API listening on port ' + port));
 const connectDatabase = async () => {
