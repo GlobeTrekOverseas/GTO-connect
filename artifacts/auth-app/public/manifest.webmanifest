@@ -1,0 +1,11 @@
+{
+  "name": "GlobeTrek Overseas",
+  "short_name": "GlobeTrek",
+  "description": "Your study abroad companion.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#06254d",
+  "orientation": "portrait-primary",
+  "icons": [{"src":"/logo.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}]
+}

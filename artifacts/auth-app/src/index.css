@@ -1,0 +1,824 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-card-border: hsl(var(--card-border));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-popover-border: hsl(var(--popover-border));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-primary-border: var(--primary-border);
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-secondary-border: var(--secondary-border);
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-muted-border: var(--muted-border);
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-accent-border: var(--accent-border);
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-destructive-border: var(--destructive-border);
+
+  --color-sidebar: hsl(var(--sidebar));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-primary-border: var(--sidebar-primary-border);
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-accent-border: var(--sidebar-accent-border);
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+
+  --font-sans: var(--app-font-sans);
+  --font-serif: var(--app-font-serif);
+  --font-mono: var(--app-font-mono);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --gto-travel-image: url('/globetrek-city-background.jpeg');
+  --background: 216 43% 97%;
+  --foreground: 215 72% 18%;
+  --card: 0 0% 100%;
+  --card-foreground: 215 72% 18%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 215 72% 18%;
+  --primary: 150 84% 25%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 216 45% 94%;
+  --secondary-foreground: 215 72% 18%;
+  --muted: 216 40% 95%;
+  --muted-foreground: 217 19% 48%;
+  --accent: 216 45% 94%;
+  --accent-foreground: 215 72% 18%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 216 30% 88%;
+  --input: 216 30% 88%;
+  --ring: 150 84% 25%;
+  --radius: 1.125rem;
+
+  --app-font-sans: 'Poppins', sans-serif;
+  --app-font-serif: Georgia, serif;
+  --app-font-mono: Menlo, monospace;
+}
+
+.dark {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222.2 84% 4.9%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 150 76% 36%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 150 76% 36%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    background: var(--gto-travel-image) center / cover fixed no-repeat;
+  }
+
+  body {
+    @apply font-sans antialiased text-foreground;
+    background: linear-gradient(180deg, rgba(247, 250, 255, .58), rgba(237, 243, 251, .62)), var(--gto-travel-image) center / cover fixed no-repeat;
+  }
+
+  button, input, textarea, select {
+    font-family: inherit;
+  }
+}
+
+
+/* GTO Connect visual system: soft travel-blue canvas, navy structure and emerald actions. */
+.gto-auth-shell {
+  position: relative;
+  isolation: isolate;
+  min-height: 100dvh;
+  width: 100%;
+  max-width: 430px;
+  margin: 0 auto;
+  overflow-x: hidden;
+  background: radial-gradient(circle at 9% 5%, rgba(161, 201, 239, .15) 0 8%, transparent 27%), linear-gradient(180deg, rgba(15, 57, 102, .10), rgba(205, 232, 248, .25)), var(--gto-travel-image) center / cover no-repeat;
+}
+.gto-auth-shell::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: .16;
+  background-image: radial-gradient(#9cb9dd 1px, transparent 1px);
+  background-size: 14px 14px;
+  mask-image: linear-gradient(160deg, black, transparent 28%, transparent 69%, black);
+}
+
+
+/* Shared study-abroad backdrop supplied for every GlobeTrek screen. */
+.gto-travel-canvas {
+  background: linear-gradient(180deg, rgba(22, 66, 112, .12), rgba(210, 235, 249, .32)), var(--gto-travel-image) center / cover fixed no-repeat;
+}
+.gto-travel-canvas--dark {
+  background: linear-gradient(180deg, rgba(3, 31, 65, .79), rgba(5, 48, 89, .80)), var(--gto-travel-image) center / cover fixed no-repeat;
+}
+
+
+/* Keep the image visibly inside the mobile screens, with glassy panels for legibility. */
+.gto-travel-canvas,
+.gto-travel-canvas--dark {
+  position: relative;
+  isolation: isolate;
+}
+.gto-travel-canvas .bg-white,
+.gto-auth-shell .bg-white {
+  background-color: rgba(255, 255, 255, .78);
+  backdrop-filter: blur(8px);
+}
+.gto-travel-canvas .shadow-sm,
+.gto-travel-canvas .shadow-lg {
+  box-shadow: 0 10px 24px rgba(12, 51, 91, .12);
+}
+
+
+/* Icons are tinted to merge gently with the blue-green travel canvas. */
+.gto-icon-blend {
+  color: #0a7254;
+  opacity: .88;
+  filter: drop-shadow(0 2px 3px rgba(9, 56, 88, .16));
+}
+[data-state='active'] .gto-icon-blend {
+  color: #fff;
+  opacity: 1;
+  filter: none;
+}
+
+
+/* Shared transparent app treatment: content stays readable while the travel scene remains visible. */
+.gto-travel-canvas .bg-white,
+.gto-travel-canvas .bg-slate-50,
+.gto-travel-canvas .bg-slate-100,
+.gto-travel-canvas [class*="bg-[#edf8f1]"],
+.gto-travel-canvas .bg-blue-50,
+.gto-travel-canvas .bg-emerald-50 {
+  background-color: rgba(255, 255, 255, .24) !important;
+  backdrop-filter: blur(2px);
+}
+.gto-travel-canvas .border-slate-100,
+.gto-travel-canvas .border-slate-200 {
+  border-color: rgba(255, 255, 255, .55) !important;
+}
+.gto-travel-canvas [class*="bg-[#062a53]"] {
+  background-color: rgba(6, 42, 83, .78) !important;
+}
+.gto-travel-canvas [class*="bg-[#087b41]"] {
+  background-color: rgba(8, 123, 65, .88) !important;
+}
+
+/* Logged-in app screens are intentionally opaque. */
+.gto-app-shell {
+  position: relative;
+  isolation: isolate;
+  background: #f5f7f8;
+}
+.gto-app-shell .bg-white {
+  background-color: #ffffff;
+  backdrop-filter: none;
+}
+
+
+/* University detail: compact, image-led mobile profile. */
+.gto-university-detail-frame > div > :nth-child(1) {
+  height: 190px !important;
+}
+.gto-university-detail-frame > div > :nth-child(1) > .bg-gradient-to-t {
+  background: linear-gradient(to top, rgba(3, 35, 73, 0.24), transparent 54%) !important;
+}
+.gto-university-detail-frame > div > :nth-child(1) > button {
+  top: 0.75rem !important;
+  width: 2rem !important;
+  height: 2rem !important;
+  border-radius: 9999px;
+  background: rgba(3, 35, 73, 0.38) !important;
+  box-shadow: none !important;
+}
+.gto-university-detail-frame > div > :nth-child(1) > button svg {
+  color: #fff !important;
+}
+.gto-university-detail-frame > div > :nth-child(2) {
+  padding: 0.7rem 0.8rem 0 !important;
+  border-bottom: 0 !important;
+}
+.gto-university-detail-frame > div > :nth-child(2) h2 {
+  font-size: 1rem !important;
+  line-height: 1.22 !important;
+}
+.gto-university-detail-frame > div > :nth-child(2) [class*="bg-[#edf8f1]"] {
+  padding: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: #64748b !important;
+  font-weight: 500 !important;
+}
+.gto-university-detail-frame > div > :nth-child(2) [class*="bg-[#edf8f1]"]::before {
+  content: "Rank: ";
+}
+.gto-university-detail-frame .flex.gap-0.mt-3.bg-slate-100 {
+  gap: 0.2rem !important;
+  margin-top: 0.45rem !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  border-bottom: 1px solid #e7edf0;
+}
+.gto-university-detail-frame .flex.gap-0.mt-3.bg-slate-100 button {
+  padding: 0.55rem 0.1rem !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.gto-university-detail-frame .flex.gap-0.mt-3.bg-slate-100 button[class*="bg-white"] {
+  color: #087b41 !important;
+  border-bottom: 2px solid #087b41;
+}
+.gto-university-detail-frame > div > :nth-child(3) {
+  padding: 0 0.8rem !important;
+}
+.gto-university-detail-frame > div > :nth-child(3) > .flex.flex-col.gap-3 {
+  gap: 0 !important;
+}
+.gto-university-detail-frame > div > :nth-child(3) > .flex.flex-col.gap-3 > .flex.justify-between {
+  padding: 0.42rem 0.12rem !important;
+  border-color: #e7edf0 !important;
+}
+.gto-university-detail-frame > div > :nth-child(3) > .flex.flex-col.gap-3 > .flex.justify-between span {
+  font-size: 0.62rem !important;
+  line-height: 1.25 !important;
+}
+.gto-university-detail-frame > div > :nth-child(3) > .flex.flex-col.gap-3 > .flex.justify-between:nth-child(n + 6),
+.gto-university-detail-frame > div > :nth-child(3) > .flex.flex-col.gap-3 > a {
+  display: none;
+}
+.gto-university-detail-frame > div > :nth-child(4) {
+  flex-direction: column !important;
+  gap: 0.45rem !important;
+  padding: 0.5rem 0.8rem calc(0.6rem + env(safe-area-inset-bottom)) !important;
+}
+.gto-university-detail-frame > div > :nth-child(4) button {
+  width: 100% !important;
+  flex: none !important;
+  min-height: 2.55rem;
+  padding: 0.55rem 0.75rem !important;
+  border-radius: 0.55rem !important;
+  font-size: 0.75rem !important;
+}
+
+
+/* Keep the signed-in experience inside a phone-sized app frame on desktop. */
+.gto-app-shell {
+  width: min(100%, 430px);
+}
+@media (min-width: 520px) {
+  .gto-app-shell {
+    height: min(100dvh, 900px) !important;
+    border-radius: 30px;
+    box-shadow: 0 22px 54px rgba(3, 35, 73, 0.22);
+  }
+  .gto-university-detail-frame {
+    top: 50% !important;
+    bottom: auto !important;
+    height: min(100dvh, 900px) !important;
+    border-radius: 30px;
+    transform: translate(-50%, -50%) !important;
+    box-shadow: 0 22px 54px rgba(3, 35, 73, 0.25) !important;
+  }
+}
+
+
+/* Wallpaper belongs inside individual app screens, never behind the phone shell. */
+html,
+body {
+  background: #f3f6f8 !important;
+}
+.gto-university-detail-frame {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  max-width: none !important;
+  bottom: -72px !important;
+  height: calc(100% + 72px) !important;
+  transform: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+@media (min-width: 520px) {
+  .gto-home-return {
+    right: calc(50% - 215px + 0.75rem) !important;
+  }
+}
+
+
+/* GTO Connect reference login: responsive interactive overlay */
+.gto-login-reference-form {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+}
+.gto-login-reference-form #gto-login-email,
+.gto-login-reference-form #gto-login-password {
+  position: absolute;
+  left: 13%;
+  width: 74%;
+  height: 5.3%;
+  border: 0;
+  border-radius: 1rem;
+  background: transparent;
+  padding: 0 12%;
+  color: #062a53;
+  font-size: 14px;
+  font-weight: 500;
+  outline: none;
+}
+.gto-login-reference-form #gto-login-email { top: 49.1%; }
+.gto-login-reference-form #gto-login-password { top: 55.2%; }
+.gto-login-reference-form > label {
+  position: absolute;
+  left: 12%;
+  top: 61.7%;
+  display: flex;
+  width: 34%;
+  height: 3.3%;
+  cursor: pointer;
+}
+.gto-login-reference-form > label input { opacity: 0; }
+.gto-login-reference-form > button { position: absolute; border: 0; background: transparent; cursor: pointer; }
+.gto-login-reference-form > button:nth-of-type(1) { left: 12%; top: 42.2%; width: 38%; height: 4.7%; }
+.gto-login-reference-form > button:nth-of-type(2) { right: 12%; top: 42.2%; width: 38%; height: 4.7%; }
+.gto-login-reference-form > button:nth-of-type(3) { right: 12%; top: 61.7%; width: 30%; height: 3.3%; }
+.gto-login-reference-form > button:nth-of-type(4) { left: 13%; top: 65.1%; width: 74%; height: 5.6%; }
+.gto-login-reference-form > button:nth-of-type(5) { left: 13%; top: 74.8%; width: 74%; height: 5.1%; }
+.gto-login-reference-form :is(input, button):focus-visible { outline: 2px solid rgba(8,123,65,.75); outline-offset: 2px; }
+
+
+/* The onboarding screens fill the complete phone canvas; no inherited wallpaper edges. */
+.gto-onboarding-shell {
+  background: #f8fbff !important;
+}
+.gto-onboarding-shell::before {
+  display: none !important;
+}
+
+
+/* Primary action on the welcome splash. */
+.gto-splash-get-started {
+  position: absolute;
+  z-index: 20;
+  left: 17%;
+  bottom: 5.5%;
+  width: 66%;
+  height: 5.3%;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #006d39, #087b41);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  box-shadow: 0 10px 22px rgba(0, 73, 39, .32);
+}
+.gto-splash-get-started:active { transform: scale(.98); }
+
+
+/* Visible account actions on the GTO Connect reference login. */
+.gto-login-extras {
+  position: absolute;
+  z-index: 20;
+  top: 80.7%;
+  left: 13%;
+  display: flex;
+  width: 74%;
+  height: 4.1%;
+  gap: 10px;
+}
+.gto-login-extras button {
+  flex: 1;
+  border-radius: 999px;
+  font-size: clamp(11px, 3vw, 13px);
+  font-weight: 800;
+  letter-spacing: .01em;
+  cursor: pointer;
+  transition: transform .16s ease, box-shadow .16s ease;
+}
+.gto-login-extras button:active { transform: scale(.97); }
+.gto-demo-account {
+  border: 1px solid rgba(255,255,255,.82);
+  background: #062a53;
+  color: #fff;
+  box-shadow: 0 8px 16px rgba(6,42,83,.22);
+}
+.gto-signup-action {
+  border: 1px solid rgba(8,123,65,.72);
+  background: rgba(255,255,255,.94);
+  color: #087b41;
+  box-shadow: 0 8px 16px rgba(8,123,65,.13);
+}
+.gto-login-extras button:focus-visible,
+.gto-signup-card :is(input,button):focus-visible {
+  outline: 2px solid #087b41;
+  outline-offset: 2px;
+}
+.gto-signup-modal {
+  position: absolute;
+  z-index: 40;
+  inset: 0;
+  display: grid;
+  place-items: end center;
+  padding: 18px 14px 20px;
+  background: rgba(3, 25, 53, .45);
+  backdrop-filter: blur(3px);
+}
+.gto-signup-card {
+  width: min(100%, 392px);
+  max-height: calc(100dvh - 32px);
+  overflow: auto;
+  border-radius: 24px;
+  background: #fff;
+  padding: 20px;
+  color: #062a53;
+  box-shadow: 0 18px 48px rgba(3,25,53,.3);
+}
+.gto-signup-header { display: flex; align-items: start; justify-content: space-between; gap: 12px; }
+.gto-signup-eyebrow { margin: 0 0 3px; color: #087b41; font-size: 10px; font-weight: 800; letter-spacing: .14em; }
+.gto-signup-card h2 { margin: 0; font-size: 22px; line-height: 1.1; font-weight: 800; }
+.gto-signup-header > button { width: 32px; height: 32px; border: 0; border-radius: 50%; background: #edf5f1; color: #087b41; font-size: 25px; line-height: 1; cursor: pointer; }
+.gto-signup-card > p { margin: 8px 0 14px; color: #60718b; font-size: 13px; }
+.gto-signup-card label { display: grid; gap: 5px; margin: 10px 0; color: #274260; font-size: 12px; font-weight: 700; }
+.gto-signup-card input { width: 100%; border: 1px solid #d7e2ed; border-radius: 12px; background: #fff; padding: 11px 12px; color: #062a53; font-size: 14px; outline: none; }
+.gto-signup-card input:focus { border-color: #087b41; box-shadow: 0 0 0 3px rgba(8,123,65,.12); }
+.gto-create-account { width: 100%; margin-top: 6px; border: 0; border-radius: 12px; background: linear-gradient(90deg,#006d39,#087b41); padding: 13px 16px; color: #fff; font-size: 15px; font-weight: 800; cursor: pointer; }
+
+
+/* Remove the status-bar chrome embedded in the supplied splash artwork. */
+.gto-splash-status-cleaner {
+  position: absolute;
+  z-index: 2;
+  inset: 0 0 auto;
+  height: 10%;
+  pointer-events: none;
+  background: linear-gradient(180deg, #fff 0%, #fff 61%, rgba(255,255,255,.96) 76%, rgba(255,255,255,0) 100%);
+}
+
+
+/* Put testing and registration into the existing sign-in-action row. */
+.gto-login-extras {
+  top: 74.8%;
+  height: 5.1%;
+  align-items: center;
+  padding: 4px;
+  gap: 8px;
+  border: 1px solid #dce4ed;
+  border-radius: 1rem;
+  background: #fff;
+  box-shadow: 0 5px 12px rgba(6,42,83,.08);
+}
+.gto-login-extras button {
+  height: 100%;
+  border-radius: 12px;
+  font-size: clamp(11px, 3vw, 13px);
+}
+.gto-demo-account { box-shadow: none; }
+.gto-signup-action { box-shadow: none; }
+
+
+/* Actual, aligned controls over the GTO Connect login artwork. */
+.gto-login-mode-visual {
+  position: absolute;
+  z-index: 21;
+  top: 42.2%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  width: 38%;
+  height: 4.7%;
+  border: 1px solid #d9e1eb;
+  border-radius: 12px;
+  background: rgba(255,255,255,.98);
+  color: #087b41;
+  font-size: clamp(12px,3vw,15px);
+  font-weight: 750;
+  pointer-events: none;
+  box-shadow: 0 2px 7px rgba(6,42,83,.06);
+}
+.gto-login-team-visual { left: 12%; background: #062a53; border-color: #062a53; color: #fff; }
+.gto-login-partner-visual { right: 12%; }
+.gto-login-partner-visual.is-active { background: #087b41; border-color: #087b41; color: #fff; }
+.gto-login-input-icon {
+  position: absolute;
+  z-index: 21;
+  color: #087b41;
+  pointer-events: none;
+}
+.gto-login-email-icon { top: 50.7%; left: 17%; }
+.gto-login-password-icon { top: 56.8%; left: 17%; }
+.gto-login-reference-form #gto-login-email,
+.gto-login-reference-form #gto-login-password {
+  z-index: 20;
+  border: 1px solid #d9e1eb !important;
+  background: rgba(255,255,255,.98) !important;
+  padding-left: 48px !important;
+  padding-right: 48px !important;
+  box-shadow: 0 2px 8px rgba(6,42,83,.05);
+}
+.gto-login-password-toggle {
+  position: absolute !important;
+  z-index: 22 !important;
+  top: 56.1% !important;
+  right: 16% !important;
+  display: grid !important;
+  width: 32px !important;
+  height: 32px !important;
+  place-items: center !important;
+  border: 0 !important;
+  border-radius: 50% !important;
+  background: transparent !important;
+  color: #718099 !important;
+}
+.gto-demo-suggestion {
+  position: absolute;
+  z-index: 21;
+  top: 71.2%;
+  left: 13%;
+  display: flex;
+  width: 74%;
+  justify-content: center;
+  color: #64748b;
+  font-size: clamp(9px,2.5vw,11px);
+  line-height: 1.2;
+  pointer-events: none;
+}
+.gto-demo-suggestion b { margin-left: 3px; color: #087b41; }
+.gto-login-extras .gto-demo-account {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  line-height: 1.02;
+}
+.gto-login-extras .gto-demo-account small { color: rgba(255,255,255,.75); font-size: 8px; font-weight: 650; }
+
+
+/* Restore the clean reference artwork: no duplicate control layers. */
+.gto-login-mode-visual,
+.gto-login-input-icon,
+.gto-login-password-toggle,
+.gto-demo-suggestion { display: none !important; }
+.gto-login-reference-form #gto-login-email,
+.gto-login-reference-form #gto-login-password {
+  z-index: auto !important;
+  border: 0 !important;
+  background: transparent !important;
+  padding-left: 12% !important;
+  padding-right: 12% !important;
+  box-shadow: none !important;
+}
+.gto-login-extras .gto-demo-account {
+  display: block;
+  font-size: clamp(11px,3vw,13px);
+  line-height: 1;
+}
+
+
+/* Compact account links sit above, never on top of, the Google sign-in row. */
+.gto-login-extras {
+  top: 70.5%;
+  height: 3.8%;
+  align-items: stretch;
+  padding: 0;
+  gap: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 10px;
+  background: rgba(255,255,255,.96);
+  box-shadow: none;
+}
+.gto-login-extras button,
+.gto-login-extras .gto-demo-account,
+.gto-login-extras .gto-signup-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  font-size: clamp(10px,2.75vw,12px);
+  font-weight: 750;
+  line-height: 1;
+}
+.gto-login-extras .gto-demo-account { color: #062a53; }
+.gto-login-extras .gto-signup-action {
+  color: #087b41;
+  border-left: 1px solid #dbe5df;
+}
+.gto-login-extras .gto-demo-account::before {
+  content: "Testing? ";
+  margin-right: 3px;
+  color: #64748b;
+  font-size: .9em;
+  font-weight: 600;
+}
+
+
+/* Self-contained fields prevent typed values from showing through the artwork. */
+.gto-login-reference-form #gto-login-email,
+.gto-login-reference-form #gto-login-password {
+  z-index: 20 !important;
+  border: 1px solid #d8e1eb !important;
+  border-radius: 16px !important;
+  background-color: #fff !important;
+  background-repeat: no-repeat !important;
+  background-size: 22px 22px !important;
+  color: #062a53 !important;
+  padding-left: 52px !important;
+  padding-right: 52px !important;
+  box-shadow: 0 3px 9px rgba(6,42,83,.05) !important;
+}
+.gto-login-reference-form #gto-login-email {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23087b41' stroke-width='2'%3E%3Crect x='3' y='5' width='18' height='14' rx='2'/%3E%3Cpath d='m3 7 9 6 9-6'/%3E%3C/svg%3E") !important;
+  background-position: 18px center !important;
+}
+.gto-login-reference-form #gto-login-password {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23087b41' stroke-width='2'%3E%3Crect x='5' y='10' width='14' height='10' rx='2'/%3E%3Cpath d='M8 10V7a4 4 0 0 1 8 0v3'/%3E%3C/svg%3E"),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpath d='M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z'/%3E%3Ccircle cx='12' cy='12' r='2.5'/%3E%3C/svg%3E") !important;
+  background-position: 18px center, calc(100% - 18px) center !important;
+}
+.gto-login-reference-form :is(#gto-login-email,#gto-login-password)::placeholder {
+  color: #94a3b8;
+  opacity: 1;
+}
+
+/* Stable account dock: deliberately separate from the reference artwork and login controls. */
+.gto-login-extras {
+  position: absolute;
+  z-index: 30;
+  top: auto;
+  right: 14px;
+  bottom: max(12px, env(safe-area-inset-bottom));
+  left: 14px;
+  width: auto;
+  height: 46px;
+  display: flex;
+  align-items: stretch;
+  padding: 4px;
+  gap: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(214, 226, 221, .95);
+  border-radius: 15px;
+  background: rgba(255, 255, 255, .98);
+  box-shadow: 0 10px 25px rgba(6, 42, 83, .16);
+}
+.gto-login-extras button,
+.gto-login-extras .gto-demo-account,
+.gto-login-extras .gto-signup-action {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-width: 0;
+  border: 0;
+  border-radius: 11px;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1;
+  white-space: nowrap;
+  box-shadow: none;
+}
+.gto-login-extras .gto-demo-account {
+  background: #062a53;
+  color: #fff;
+}
+.gto-login-extras .gto-signup-action {
+  background: #087b41;
+  color: #fff;
+}
+.gto-login-extras .gto-demo-account::before {
+  content: none;
+  display: none;
+}
+
+/* The supplied login art is a phone canvas. Preserve that canvas so every target matches its visible button. */
+.gto-auth-reference-shell {
+  width: min(100vw, calc(100dvh * .4625)) !important;
+  max-width: 430px;
+  margin-inline: auto;
+}
+.gto-auth-reference-shell > img { object-fit: fill !important; }
+.gto-login-extras {
+  position: absolute;
+  z-index: 30;
+  top: 80.7%;
+  right: auto;
+  bottom: auto;
+  left: 13%;
+  width: 74%;
+  height: 4.1%;
+  display: flex;
+  align-items: stretch;
+  padding: 0;
+  gap: 8px;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.gto-login-extras button,
+.gto-login-extras .gto-demo-account,
+.gto-login-extras .gto-signup-action {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  height: 100%;
+  border: 0;
+  border-radius: 999px;
+  font-size: clamp(10px, 2.65vw, 12px);
+  font-weight: 800;
+  line-height: 1;
+  white-space: nowrap;
+  box-shadow: none;
+}
+.gto-login-extras .gto-demo-account { background: #062a53; color: #fff; }
+.gto-login-extras .gto-signup-action { background: #087b41; color: #fff; }
+.gto-login-extras .gto-demo-account::before { content: none; display: none; }
+.gto-login-reference-form :is(input, button):focus-visible { outline: 2px solid rgba(8,123,65,.8); outline-offset: 0; }
+
+/* The login artwork already provides the visual button; never draw a second, oversized focus ring over it. */
+.gto-login-reference-form > button:focus,
+.gto-login-reference-form > button:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* The reference artwork already contains each field's perimeter.  The live
+   inputs sit over its interior, so they must never add a second border/ring. */
+.gto-login-reference-form #gto-login-email,
+.gto-login-reference-form #gto-login-password,
+.gto-login-reference-form #gto-login-email:focus,
+.gto-login-reference-form #gto-login-password:focus,
+.gto-login-reference-form #gto-login-email:focus-visible,
+.gto-login-reference-form #gto-login-password:focus-visible {
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+}
+
+/* A native mobile feed should scroll naturally without exposing desktop bars. */
+.gto-home-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.gto-home-scroll::-webkit-scrollbar { display: none; }

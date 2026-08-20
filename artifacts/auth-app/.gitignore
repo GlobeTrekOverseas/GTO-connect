@@ -1,0 +1,5 @@
+.env
+
+# Local runtime files
+*.log
+$null

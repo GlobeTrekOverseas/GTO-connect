@@ -1,0 +1,23 @@
+{
+  "folders": [
+    {
+      "name": "GTO Connect — Complete Project",
+      "path": "."
+    },
+    {
+      "name": "Mobile App + Express Backend",
+      "path": "artifacts/auth-app"
+    },
+    {
+      "name": "AI API Service",
+      "path": "artifacts/api-server"
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/node_modules": true,
+      "**/dist": true,
+      "**/.git": true
+    }
+  }
+}
