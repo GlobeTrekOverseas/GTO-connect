@@ -282,7 +282,7 @@ function MobileSlideFrame({ children }: { children: React.ReactNode }) {
 
 function GlobalJourneySplash({ onNext }: { onNext: () => void }) {
   React.useEffect(() => {
-    const timer = window.setTimeout(onNext, 3000);
+    const timer = window.setTimeout(onNext, 5000);
     return () => window.clearTimeout(timer);
   }, [onNext]);
 
